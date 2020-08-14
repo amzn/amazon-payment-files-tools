@@ -12,6 +12,6 @@ dependencies {
 }
 
 application {
-    mainClass.set("com.amazon.paymentsfiles.CLIKt")
+    mainClass.set("com.amazon.paymentsfiles.validation.CLIKt")
     applicationName = "validate-remittance"
 }

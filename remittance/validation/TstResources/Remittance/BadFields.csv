@@ -1,0 +1,5 @@
+"P,20160340,036405,2.11"
+"D,20161302,This is an extremely long bank name that will exceed one hundred characters in length and fail the field check,93533a02582,Amex,20160342,This is an extremely long bank transfer ID that will exceed one hundred characters in length and fail the field check,ABC,1234.000,1.1,ABC,000000000000000000000045.80,2:1"
+"R,CASH,FXF,This is an extremely long transaction ID that will exceed one hundred characters in length and fail the field check,ABC,1234.000,Exceedingly long amazon processing division ID,DW,ABC,00000000000000001.50,12:1"
+"E,20160392,1.1"
+"T,One"
