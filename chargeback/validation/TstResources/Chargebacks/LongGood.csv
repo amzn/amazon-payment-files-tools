@@ -1,0 +1,13 @@
+Dispute Status,Case Number,Transaction ID,Dispute Time,Currency,Disputed Amount,Reason,Representment Deadline,Reason Description
+Won,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2000-01-01T20:05:30Z,JPY,3400,Duplicate,2018-05-21,blah blah blah
+Lost,TKD-12785-512-d5a04f70-f26b-45,haIsDjeqgm4898zjvnjp93P9,2001-02-04T00:00:00.888Z,ARS,20.50,Fraudulent,2020-04-21,
+NeedsResponse,APL-25198-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2002-03-06T00:00:00.888Z,BIF,9753,SubscriptionCanceled,2020-04-21,blah blah blah
+Won,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2003-04-09T20:05:30Z,BHD,789.111,ProductUnacceptable,2018-05-21,blah blah blah
+Lost,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2004-05-11T00:00:00.888Z,USD,200.50,ProductNotReceived,2020-04-21,blah blah blah
+NeedsResponse,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2005-06-14T00:00:00.888Z,EUR,99.99,Unrecognized,2020-04-21,
+Won,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2006-07-16T20:05:30Z,CAD,555.66,CreditNotProcessed,2018-05-21,blah blah blah
+Lost,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2007-08-19T00:00:00.888Z,DJF,2450,General,2020-04-21,blah blah blah
+NeedsResponse,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2008-09-21T00:00:00.888Z,JOD,20.508,Overcharged,2020-04-21,blah blah blah
+Won,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2009-10-24T20:05:30Z,KRW,9300,ProcessingError,2018-05-21,
+Lost,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2010-11-27T00:00:00.888Z,LRD,20.50,PaidbyOtherMeans,2020-04-21,blah blah blah
+NeedsResponse,CBK-15108-512-d5a04f70-f26b-45,f7IVC1DgvDt0WeG9xDHn,2011-12-29T00:00:00.888Z,GBP,50.00,OrderCanceled,2020-04-21,blah blah blah

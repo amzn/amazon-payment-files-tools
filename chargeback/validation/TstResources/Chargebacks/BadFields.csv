@@ -1,0 +1,2 @@
+Dispute Status,Case Number,Transaction ID,Dispute Time,Currency,Disputed Amount,Reason,Representment Deadline,Reason Description
+won,CBK-15108-512-d5a04f70-f26b-45_afewextracharactersinhere,f7IVC1DgvDt0WeG9xDHn_afewextracharactersinhere,2020-04-15T20:95:30Z,ABC,500.50.,Unrecognised,2018-21-05,Customer provided unicode char ñ
