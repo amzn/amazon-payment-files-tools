@@ -45,18 +45,23 @@ enum class DepositRecordField(
     override val validation: ((String, String) -> FieldError?)?
 ) : CSVFieldModel {
     RecordType("Record Type", FieldRequired.Always, null),
-    TransactionMethod("Transaction Method", FieldRequired.Always,
-            makeChoiceCheck(enumValues<TransactionMethodOption>().map { it.abbr })),
+    TransactionMethod(
+        "Transaction Method",
+        FieldRequired.Always,
+        makeChoiceCheck(enumValues<TransactionMethodOption>().map { it.abbr })
+    ),
     TransactionType("Transaction Type", FieldRequired.Always, null),
     TransactionID("Transaction ID", FieldRequired.Always, makeLengthCheck(100)),
     TransactionAmountCurrency("Transaction Amount Currency", FieldRequired.Always, ::checkISOCurrency),
     TransactionAmount("Transaction Amount", FieldRequired.Always, ::checkStandardMonetary),
     AmazonProcessingDivisionID("Amazon Processing Division ID", FieldRequired.Always, makeLengthCheck(30)),
     Direction("Direction", FXFieldRequired.Record, makeChoiceCheck(enumValues<DirectionOption>().map { it.abbr })),
-    TransactionFXPresentmentCurrency("Transaction FX Presentment Currency", FXFieldRequired.Record,
-            ::checkISOCurrency),
-    TransactionFXPresentmentAmount("Transaction FX Presentment Amount", FXFieldRequired.Record,
-            ::checkStandardMonetary),
+    TransactionFXPresentmentCurrency(
+        "Transaction FX Presentment Currency", FXFieldRequired.Record, ::checkISOCurrency
+    ),
+    TransactionFXPresentmentAmount(
+        "Transaction FX Presentment Amount", FXFieldRequired.Record, ::checkStandardMonetary
+    ),
     TransactionFXRate("Transaction FX Rate", FXFieldRequired.ContextDependent, ::checkDouble)
 }
 

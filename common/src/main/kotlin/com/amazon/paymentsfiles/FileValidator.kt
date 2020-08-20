@@ -22,12 +22,12 @@ interface FileValidator {
  * @return a List of field errors to be added to the Validator error report (if there are any)
  */
 fun CSVEntry.validateFields(mandatoryFields: Set<Requirement> = setOf()): List<FieldError> =
-        this.contents.keys.mapNotNull { field ->
-            if (field.required == FieldRequired.Always || field.required in mandatoryFields)
-                checkNonEmpty(field.fieldName, this.get(field))
-                        ?: field.validation?.let { it(field.fieldName, this.get(field)) }
-            else if (this.get(field) != "")
-                field.validation?.let { it(field.fieldName, this.get(field)) }
-            else
-                null
-        }
+    this.contents.keys.mapNotNull { field ->
+        if (field.required == FieldRequired.Always || field.required in mandatoryFields)
+            checkNonEmpty(field.fieldName, this.get(field))
+                ?: field.validation?.let { it(field.fieldName, this.get(field)) }
+        else if (this.get(field) != "")
+            field.validation?.let { it(field.fieldName, this.get(field)) }
+        else
+            null
+    }

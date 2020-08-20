@@ -14,14 +14,19 @@ import java.math.BigDecimal
  * @return an ArrayList of FieldError objects detected in that line
  */
 fun checkFXFilled(record: CSVEntry, internalState: RemittanceStats): FieldError? =
-    if (internalState.fx == FXRequirements.PayStationStandard &&
-            internalState.prevDepositHeader!!.get(DepositHeaderField.FXRate) == "" &&
-            record.get(DepositRecordField.TransactionFXRate) == "")
+    if (
+        internalState.fx == FXRequirements.PayStationStandard &&
+        internalState.prevDepositHeader!!.get(DepositHeaderField.FXRate) == "" &&
+        record.get(DepositRecordField.TransactionFXRate) == ""
+    ) {
         StandardRemittanceError.FXRate.error
-    else if (internalState.fx == FXRequirements.OnlyInRecords && record.get(DepositRecordField.TransactionFXRate) == "")
+    } else if (
+        internalState.fx == FXRequirements.OnlyInRecords && record.get(DepositRecordField.TransactionFXRate) == ""
+    ) {
         StandardRemittanceError.FXRate.error
-    else
+    } else {
         null
+    }
 
 /**
  * Context validation function to ensure that the record's Transaction Type matches one of the permitted values
@@ -33,8 +38,8 @@ fun checkFXFilled(record: CSVEntry, internalState: RemittanceStats): FieldError?
 fun checkTransactionType(record: CSVEntry, internalState: RemittanceStats): FieldError? {
     val transactionTypeField = DepositRecordField.TransactionType
     val transactionTypeOptions = listOf(
-            listOf(""),
-            TransactionTypeOption.fetchOptions(internalState.fileClass).map { it.abbr }
+        listOf(""),
+        TransactionTypeOption.fetchOptions(internalState.fileClass).map { it.abbr }
     ).flatten()
     return checkValidChoice(transactionTypeField.fieldName, record.get(transactionTypeField), transactionTypeOptions)
 }
@@ -49,12 +54,15 @@ fun checkTransactionType(record: CSVEntry, internalState: RemittanceStats): Fiel
 fun checkDepositDates(record: CSVEntry, internalState: RemittanceStats): FieldError? {
     val headerDate = internalState.prevDepositHeader!!.get(DepositHeaderField.DepositDate)
     val trailerDate = record.get(DepositTrailerField.DepositDate)
-    return if (DepositHeaderField.DepositDate.validation?.let { it("", headerDate) } == null &&
-            DepositTrailerField.DepositDate.validation?.let { it("", trailerDate) } == null &&
-            headerDate != trailerDate)
+    return if (
+        DepositHeaderField.DepositDate.validation?.let { it("", headerDate) } == null &&
+        DepositTrailerField.DepositDate.validation?.let { it("", trailerDate) } == null &&
+        headerDate != trailerDate
+    ) {
         StandardRemittanceError.DifferingDepositDates.error
-    else
+    } else {
         null
+    }
 }
 
 /**
@@ -122,9 +130,9 @@ val trailerContextChecks = listOf(::checkNumberOfRemittanceRecords)
  * CSVEntry extension function that performs additional field checks against validator configuration state
  */
 fun CSVEntry.validateContext(internalState: RemittanceStats): List<FieldError> =
-        when (this.fetchRecordType()) {
-            RecordType.DepositRecord -> recordContextChecks
-            RecordType.DepositTrailer -> depositTrailerContextChecks
-            RecordType.Trailer -> trailerContextChecks
-            else -> listOf()
-        }.mapNotNull { check -> check(this, internalState) }
+    when (this.fetchRecordType()) {
+        RecordType.DepositRecord -> recordContextChecks
+        RecordType.DepositTrailer -> depositTrailerContextChecks
+        RecordType.Trailer -> trailerContextChecks
+        else -> listOf()
+    }.mapNotNull { check -> check(this, internalState) }

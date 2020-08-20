@@ -65,11 +65,11 @@ class RemittanceReader(file: File, quotesExpected: Boolean = true) {
          * the order in which records of various types are written
          */
         private val transitionStates = mapOf<RecordType?, Set<RecordType?>>(
-                null to setOf(RecordType.Header),
-                RecordType.Header to setOf(RecordType.DepositHeader),
-                RecordType.DepositHeader to setOf(RecordType.DepositRecord),
-                RecordType.DepositRecord to setOf(RecordType.DepositRecord, RecordType.DepositTrailer),
-                RecordType.DepositTrailer to setOf(RecordType.DepositHeader, RecordType.Trailer)
+            null to setOf(RecordType.Header),
+            RecordType.Header to setOf(RecordType.DepositHeader),
+            RecordType.DepositHeader to setOf(RecordType.DepositRecord),
+            RecordType.DepositRecord to setOf(RecordType.DepositRecord, RecordType.DepositTrailer),
+            RecordType.DepositTrailer to setOf(RecordType.DepositHeader, RecordType.Trailer)
         )
     }
 }

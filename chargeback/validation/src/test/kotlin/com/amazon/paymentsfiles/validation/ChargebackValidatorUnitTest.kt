@@ -6,10 +6,10 @@ package com.amazon.paymentsfiles.validation
 import com.amazon.paymentsfiles.ChargebackField
 import com.amazon.paymentsfiles.FieldRequired
 import com.amazon.paymentsfiles.contextChecks
-import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.io.File
 
 class ChargebackValidatorUnitTest {
 

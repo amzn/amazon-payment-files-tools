@@ -28,27 +28,24 @@ import com.github.ajalt.clikt.parameters.types.file
  */
 class CLI : CliktCommand() {
 
-    private val verbose: Boolean by option("-v", "--verbose",
-            help = "Provides more context with error messages")
-            .flag()
+    private val verbose: Boolean by option("-v", "--verbose", help = "Provides more context with error messages")
+        .flag()
 
-    private val fx: String by option("-fx",
-            help = "Adds additional checks on foreign exchange transaction fields")
-            .choice("standard", "onlyRecords")
-            .default("none")
+    private val fx: String by option("-fx", help = "Adds additional checks on foreign exchange transaction fields")
+        .choice("standard", "onlyRecords")
+        .default("none")
 
-    private val noWrap: Boolean by option("-nw", "--no-wrap",
-            help = "Ignores check that each line must be wrapped in quotation marks")
-            .flag()
+    private val noWrap: Boolean by option(
+        "-nw", "--no-wrap", help = "Ignores check that each line must be wrapped in quotation marks"
+    ).flag()
 
-    private val fileClass: String by option("--file-class", "-fc",
-            help = "Adjust the validation process for specific file sources")
-            .choice("DLocal", "Standard")
-            .default("Standard")
+    private val fileClass: String by option(
+        "--file-class", "-fc", help = "Adjust the validation process for specific file sources"
+    ).choice("DLocal", "Standard").default("Standard")
 
     private val files by argument(help = "Any number of valid file paths to validate")
-            .file(mustExist = true, canBeFile = true, canBeDir = false)
-            .multiple(required = true)
+        .file(mustExist = true, canBeFile = true, canBeDir = false)
+        .multiple(required = true)
 
     private fun fetchFX(): FXRequirements = when (fx) {
         "standard" -> FXRequirements.PayStationStandard

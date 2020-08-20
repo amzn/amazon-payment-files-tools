@@ -58,11 +58,12 @@ class OutputStreamDirector(
         writer.append("\n")
     }
 
-    private fun printErrorLineHeader(errorLine: ErrorLine) = t.red.print("${errorLine.errors.size} error" +
-            (if (errorLine.errors.size > 1) "s" else "") + " found in line #${errorLine.lineNo}:\n")
+    private fun printErrorLineHeader(errorLine: ErrorLine) = errorLine.run {
+        t.red.print("${errors.size} error${if (errors.size > 1) "s" else ""} found in line #$lineNo:\n")
+    }
 
     private fun printError(error: FieldError, verbose: Boolean) =
-            t.red.print("--> " + (if (verbose) error.verbose else error.normal) + "\n")
+        t.red.print("--> " + (if (verbose) error.verbose else error.normal) + "\n")
 
     /**
      * Inform the reader if no errors were found and then close the OutputStreamWriter

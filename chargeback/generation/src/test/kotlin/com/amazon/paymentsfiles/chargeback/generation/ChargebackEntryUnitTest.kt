@@ -26,8 +26,10 @@ class ChargebackEntryUnitTest {
         representmentDeadline: LocalDate = LocalDate.now(),
         disputeTime: Instant = Instant.now(),
         reasonDescription: String = ""
-    ) = ChargebackEntry(disputeStatus, caseNumber, transactionID, currency, disputedAmount, reason,
-        representmentDeadline, reasonDescription, disputeTime)
+    ) = ChargebackEntry(
+        disputeStatus, caseNumber, transactionID, currency, disputedAmount, reason, representmentDeadline,
+        reasonDescription, disputeTime
+    )
 
     @Nested
     inner class PositiveCases {

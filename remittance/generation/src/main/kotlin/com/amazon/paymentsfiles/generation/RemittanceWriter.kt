@@ -30,7 +30,8 @@ class RemittanceWriter @JvmOverloads constructor(
     private val fxRequirements: FXRequirements = FXRequirements.PayStationStandard
 ) : AutoCloseable {
 
-    @JvmOverloads constructor(
+    @JvmOverloads
+    constructor(
         filePath: String,
         creationTime: LocalDateTime = LocalDateTime.now(),
         fxRequirements: FXRequirements = FXRequirements.PayStationStandard
@@ -46,8 +47,10 @@ class RemittanceWriter @JvmOverloads constructor(
         initialized = true
     }
 
-    private fun writeHeader() = writer.write(""""${RecordType.Header.charName},${formatDate(creationTime)},""" +
-            """${formatTime(creationTime)},$REMITTANCE_FILE_VERSION"${'\n'}""")
+    private fun writeHeader() = writer.write(
+        """"${RecordType.Header.charName},${formatDate(creationTime)},""" +
+            """${formatTime(creationTime)},$REMITTANCE_FILE_VERSION"${'\n'}"""
+    )
 
     fun addDeposit(header: DepositHeader) {
         deposit?.close()

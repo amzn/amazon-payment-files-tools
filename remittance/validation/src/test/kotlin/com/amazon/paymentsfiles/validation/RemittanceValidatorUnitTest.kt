@@ -10,10 +10,10 @@ import com.amazon.paymentsfiles.RemittanceFileClass
 import com.amazon.paymentsfiles.depositTrailerContextChecks
 import com.amazon.paymentsfiles.recordContextChecks
 import com.amazon.paymentsfiles.trailerContextChecks
-import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.io.File
 
 class RemittanceValidatorUnitTest {
 
@@ -49,8 +49,8 @@ class RemittanceValidatorUnitTest {
             var countOfRequiredFields = 0
             for (recordType in enumValues<RecordType>())
                 countOfRequiredFields += recordType.fields
-                        .filter { it.required == FieldRequired.Always && it.fieldName != "Record Type"}
-                        .size
+                    .filter { it.required == FieldRequired.Always && it.fieldName != "Record Type" }
+                    .size
 
             val validator = RemittanceValidator()
             Assertions.assertEquals(countOfRequiredFields, validator.countErrors(testPath + "EmptyFields.csv"))

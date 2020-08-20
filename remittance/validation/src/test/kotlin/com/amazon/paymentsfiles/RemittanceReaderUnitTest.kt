@@ -5,10 +5,10 @@ package com.amazon.paymentsfiles
 
 import com.amazon.paymentsfiles.validation.RecordTypeException
 import com.amazon.paymentsfiles.validation.RemittanceStructureException
-import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.io.File
 
 class RemittanceReaderUnitTest {
 
@@ -26,11 +26,11 @@ class RemittanceReaderUnitTest {
              * Placed into an array instead of a map so that it can be indexed when iterating the remit.records sequence
              */
             val properFieldValues = arrayOf<Pair<CSVFieldModel, String>>(
-                Pair(HeaderField.FileFormatVersion,"2.1"),
-                Pair(DepositHeaderField.DepositCurrency,"MXN"),
-                Pair(DepositRecordField.AmazonProcessingDivisionID,"9353302582"),
-                Pair(DepositTrailerField.DepositDate,"20160302"),
-                Pair(TrailerField.NumberOfRemittanceRecords,"1")
+                Pair(HeaderField.FileFormatVersion, "2.1"),
+                Pair(DepositHeaderField.DepositCurrency, "MXN"),
+                Pair(DepositRecordField.AmazonProcessingDivisionID, "9353302582"),
+                Pair(DepositTrailerField.DepositDate, "20160302"),
+                Pair(TrailerField.NumberOfRemittanceRecords, "1")
             )
 
             var counter = 0
@@ -46,7 +46,6 @@ class RemittanceReaderUnitTest {
         fun `File Without Quotation Wrapping Can Pass Structure Tests`() {
             RemittanceReader(File(testPath + "NotWrapped.csv"), quotesExpected = false)
         }
-
     }
 
     @Nested
@@ -76,7 +75,7 @@ class RemittanceReaderUnitTest {
         @Test
         fun `Deposit Trailer Following Deposit Header Throws Structure Exception`() {
             Assertions.assertThrows(RemittanceStructureException::class.java) {
-               RemittanceReader(File(testPath + "NoRecords.csv"))
+                RemittanceReader(File(testPath + "NoRecords.csv"))
             }
         }
 

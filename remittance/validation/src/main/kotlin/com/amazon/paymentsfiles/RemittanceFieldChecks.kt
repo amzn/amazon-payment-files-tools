@@ -13,14 +13,16 @@ package com.amazon.paymentsfiles
  * @return a FieldError object if the check fails and null otherwise
  */
 fun checkCorrectFormatVersion(@Suppress("UNUSED_PARAMETER") fieldName: String, value: String): FieldError? =
-        if (value == REMITTANCE_FILE_VERSION) null else StandardRemittanceError.FileFormatVersion.error
+    if (value == REMITTANCE_FILE_VERSION) null else StandardRemittanceError.FileFormatVersion.error
 
 fun checkThirtyTwoNumeric(@Suppress("UNUSED_PARAMETER") fieldName: String, value: String): FieldError? {
-    val pattern = """\d{1,32}"""
+    val pattern =
+        """\d{1,32}"""
     return if (Regex(pattern).matches(value)) null else StandardRemittanceError.DepositAccountNumber.error
 }
 
 fun checkStandardMonetary(fieldName: String, value: String): FieldError? {
-    val pattern = """-?\d{0,16}(\.\d{1,2})?"""
+    val pattern =
+        """-?\d{0,16}(\.\d{1,2})?"""
     return if (Regex(pattern).matches(value)) null else StandardRemittanceError.notStandardMonetary(fieldName)
 } // Potentially replace with a cross-reference check to the provided currency

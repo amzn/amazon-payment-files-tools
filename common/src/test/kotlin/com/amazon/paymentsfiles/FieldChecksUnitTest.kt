@@ -11,8 +11,9 @@ import org.junit.jupiter.api.TestFactory
 
 class FieldChecksUnitTest {
 
-    private val simpleFieldChecks = listOf(::checkNonEmpty, ::checkInteger, ::checkDouble, ::checkISOCurrency,
-            ::checkAllASCII)
+    private val simpleFieldChecks = listOf(
+        ::checkNonEmpty, ::checkInteger, ::checkDouble, ::checkISOCurrency, ::checkAllASCII
+    )
 
     @Nested
     inner class PositiveCases {
@@ -25,9 +26,11 @@ class FieldChecksUnitTest {
 
             val testArray = arrayListOf<DynamicTest>()
             for (i in simpleFieldChecks.indices) {
-                testArray.add(DynamicTest.dynamicTest("Good Case for ${simpleFieldChecks[i].name}") {
-                    checkReturnsNothing(simpleFieldChecks[i]("fieldName", goodCasesForSimple[i]))
-                })
+                testArray.add(
+                    DynamicTest.dynamicTest("Good Case for ${simpleFieldChecks[i].name}") {
+                        checkReturnsNothing(simpleFieldChecks[i]("fieldName", goodCasesForSimple[i]))
+                    }
+                )
             }
             return testArray
         }
@@ -62,9 +65,11 @@ class FieldChecksUnitTest {
 
             val testArray = arrayListOf<DynamicTest>()
             for (i in simpleFieldChecks.indices) {
-                testArray.add(DynamicTest.dynamicTest("Bad Case for ${simpleFieldChecks[i].name}") {
-                    checkReturnsError(simpleFieldChecks[i]("fieldName", badCasesForSimple[i]))
-                })
+                testArray.add(
+                    DynamicTest.dynamicTest("Bad Case for ${simpleFieldChecks[i].name}") {
+                        checkReturnsError(simpleFieldChecks[i]("fieldName", badCasesForSimple[i]))
+                    }
+                )
             }
             return testArray
         }

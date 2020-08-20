@@ -21,9 +21,11 @@ class RemittanceFieldChecksUnitTest {
 
             val testArray = arrayListOf<DynamicTest>()
             for (i in fieldChecks.indices) {
-                testArray.add(DynamicTest.dynamicTest("Good Case for ${fieldChecks[i].name}") {
-                    Assertions.assertNull(fieldChecks[i]("fieldName", goodCasesForSimple[i]))
-                })
+                testArray.add(
+                    DynamicTest.dynamicTest("Good Case for ${fieldChecks[i].name}") {
+                        Assertions.assertNull(fieldChecks[i]("fieldName", goodCasesForSimple[i]))
+                    }
+                )
             }
             return testArray
         }
@@ -38,10 +40,12 @@ class RemittanceFieldChecksUnitTest {
 
             val testArray = arrayListOf<DynamicTest>()
             for (i in fieldChecks.indices) {
-                testArray.add(DynamicTest.dynamicTest("Bad Case for ${fieldChecks[i].name}") {
-                    val returnObject = fieldChecks[i]("fieldName", badCasesForSimple[i])
-                    Assertions.assertTrue(returnObject is FieldError)
-                })
+                testArray.add(
+                    DynamicTest.dynamicTest("Bad Case for ${fieldChecks[i].name}") {
+                        val returnObject = fieldChecks[i]("fieldName", badCasesForSimple[i])
+                        Assertions.assertTrue(returnObject is FieldError)
+                    }
+                )
             }
             return testArray
         }

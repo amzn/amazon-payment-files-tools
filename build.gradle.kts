@@ -1,6 +1,15 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+buildscript {
+    repositories {
+        maven("https://plugins.gradle.org/m2/")
+    }
+    dependencies {
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:9.3.0")
+    }
+}
+
 plugins {
     kotlin("jvm") version "1.4.0"
 }
@@ -20,6 +29,7 @@ allprojects {
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.jlleitschuh.gradle.ktlint")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

@@ -49,20 +49,22 @@ class DepositHeaderUnitTest {
 
     companion object {
         fun simpleDepositHeaderGenerator(
-                depositDate: LocalDate = LocalDate.now(),
-                depositAccountName: String = "Wells Fargo",
-                depositAccountNumber: String = "000000000000",
-                remittanceVendorID: String = "EBANX",
-                effectiveDepositDate: LocalDate = LocalDate.now(),
-                bankTransferID: String = "ABC-0000",
-                currency: Currency = Currency.getInstance("USD"),
-                depositAmount: BigDecimal = BigDecimal("35.77"),
-                remittanceRevision: Int = 1,
-                fxPresentmentCurrency: Currency? = null,
-                fxPresentmentAmount: BigDecimal? = null,
-                fxRate: BigDecimal? = null
-        ) = DepositHeader(depositDate, depositAccountName, depositAccountNumber, remittanceVendorID, effectiveDepositDate,
-                bankTransferID, currency, depositAmount, remittanceRevision, fxPresentmentCurrency, fxPresentmentAmount,
-                fxRate)
+            depositDate: LocalDate = LocalDate.now(),
+            depositAccountName: String = "Wells Fargo",
+            depositAccountNumber: String = "000000000000",
+            remittanceVendorID: String = "EBANX",
+            effectiveDepositDate: LocalDate = LocalDate.now(),
+            bankTransferID: String = "ABC-0000",
+            currency: Currency = Currency.getInstance("USD"),
+            depositAmount: BigDecimal = BigDecimal("35.77"),
+            remittanceRevision: Int = 1,
+            fxPresentmentCurrency: Currency? = null,
+            fxPresentmentAmount: BigDecimal? = null,
+            fxRate: BigDecimal? = null
+        ) = DepositHeader(
+            depositDate, depositAccountName, depositAccountNumber, remittanceVendorID, effectiveDepositDate,
+            bankTransferID, currency, depositAmount, remittanceRevision, fxPresentmentCurrency, fxPresentmentAmount,
+            fxRate
+        )
     }
 }

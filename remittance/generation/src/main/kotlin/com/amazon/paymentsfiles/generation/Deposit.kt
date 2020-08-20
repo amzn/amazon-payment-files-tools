@@ -29,9 +29,9 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
      * DepositHeader extension function to write the header's fields into a proper CSV line to be written to a file
      */
     private fun DepositHeader.toCSVLine(): String = "${RecordType.DepositHeader.charName},${formatDate(depositDate)}," +
-            "$depositAccountName,$depositAccountNumber,$remittanceVendorID,${formatDate(effectiveDepositDate)}," +
-            "$bankTransferID,$depositCurrency,${formatMonetary(depositAmount)},$remittanceRevision," +
-            "${filterNull(fxPresentmentCurrency)},${formatNullableMonetary(fxPresentmentAmount)},${filterNull(fxRate)}"
+        "$depositAccountName,$depositAccountNumber,$remittanceVendorID,${formatDate(effectiveDepositDate)}," +
+        "$bankTransferID,$depositCurrency,${formatMonetary(depositAmount)},$remittanceRevision," +
+        "${filterNull(fxPresentmentCurrency)},${formatNullableMonetary(fxPresentmentAmount)},${filterNull(fxRate)}"
 
     /**
      * Function to run validation checks on a record being added to the deposit. If the checks pass, that record is
@@ -63,20 +63,25 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
      * if the deposit fxRequirements requires it
      */
     private fun checkFXRateProvided(record: DepositRecord) {
-        if (fxRequirements == FXRequirements.PayStationStandard && header.isFX() && !header.fxRateSpecified() &&
-                !record.fxRateSpecified())
+        if (
+            fxRequirements == FXRequirements.PayStationStandard &&
+            header.isFX() &&
+            !header.fxRateSpecified() &&
+            !record.fxRateSpecified()
+        ) {
             throw FXRateNotProvidedException()
-        else if (fxRequirements == FXRequirements.OnlyInRecords && !record.fxRateSpecified())
+        } else if (fxRequirements == FXRequirements.OnlyInRecords && !record.fxRateSpecified()) {
             throw FXRateNotProvidedException()
+        }
     }
 
     /**
      * DepositRecord extension function to write the record's fields into a proper CSV line to be written to a file
      */
     private fun DepositRecord.toCSVLine(): String = "${RecordType.DepositRecord.charName},${transactionMethod.abbr}," +
-            "${transactionType.abbr},$transactionID,$transactionAmountCurrency,${formatMonetary(transactionAmount)}," +
-            "$processingDivisionID,${filterNull(direction?.abbr)},${filterNull(transactionFXCurrency)}," +
-            "${formatNullableMonetary(transactionFXAmount)},${filterNull(transactionFXRate)}"
+        "${transactionType.abbr},$transactionID,$transactionAmountCurrency,${formatMonetary(transactionAmount)}," +
+        "$processingDivisionID,${filterNull(direction?.abbr)},${filterNull(transactionFXCurrency)}," +
+        "${formatNullableMonetary(transactionFXAmount)},${filterNull(transactionFXRate)}"
 
     fun close() {
         checkDepositTotal()
@@ -92,6 +97,7 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
             throw RecordAmountSumException()
     }
 
-    private fun writeTrailer() = writer.append(""""${RecordType.DepositTrailer.charName},""" +
-            """${formatDate(header.depositDate)},$recordCount"${'\n'}""")
+    private fun writeTrailer() = writer.append(
+        """"${RecordType.DepositTrailer.charName},${formatDate(header.depositDate)},$recordCount"${'\n'}"""
+    )
 }

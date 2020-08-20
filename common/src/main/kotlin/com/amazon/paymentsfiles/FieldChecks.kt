@@ -17,13 +17,13 @@ import java.util.Currency
  * @return a FieldError object if the check fails and null otherwise
  */
 fun checkNonEmpty(fieldName: String, value: String): FieldError? =
-        if (value.isEmpty()) FieldError.empty(fieldName) else null
+    if (value.isEmpty()) FieldError.empty(fieldName) else null
 
 fun checkLength(fieldName: String, value: String, maxLength: Int) =
-        if (value.length > maxLength) FieldError.exceedsLength(fieldName, maxLength) else null
+    if (value.length > maxLength) FieldError.exceedsLength(fieldName, maxLength) else null
 
 fun checkValidChoice(fieldName: String, value: String, choices: List<String>) =
-        if (value in choices) null else FieldError.notValidChoice(fieldName, choices)
+    if (value in choices) null else FieldError.notValidChoice(fieldName, choices)
 
 fun checkInteger(fieldName: String, value: String): FieldError? = try {
     value.toInt()
@@ -68,10 +68,10 @@ fun checkDateTimeParse(fieldName: String, value: String, pattern: String): Field
  * @return a function of type (String, String) -> FieldError?
  */
 fun makeLengthCheck(maxLength: Int): (String, String) -> FieldError? =
-        { fieldName, value -> checkLength(fieldName, value, maxLength) }
+    { fieldName, value -> checkLength(fieldName, value, maxLength) }
 
 fun makeChoiceCheck(choices: List<String>): (String, String) -> FieldError? =
-        { fieldName, value -> checkValidChoice(fieldName, value, choices) }
+    { fieldName, value -> checkValidChoice(fieldName, value, choices) }
 
 fun makeDateTimeParseCheck(pattern: String): (String, String) -> FieldError? =
-        { fieldName, value -> checkDateTimeParse(fieldName, value, pattern) }
+    { fieldName, value -> checkDateTimeParse(fieldName, value, pattern) }

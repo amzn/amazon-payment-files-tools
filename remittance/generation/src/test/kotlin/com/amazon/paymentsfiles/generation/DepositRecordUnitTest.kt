@@ -54,7 +54,9 @@ class DepositRecordUnitTest {
             transactionFXCurrency: Currency? = null,
             transactionFXAmount: BigDecimal? = null,
             transactionFXRate: BigDecimal? = null
-        ) = DepositRecord(transactionMethod, transactionType, transactionID, transactionAmountCurrency, transactionAmount,
-                processingDivisionID, direction, transactionFXCurrency, transactionFXAmount, transactionFXRate)
+        ) = DepositRecord(
+            transactionMethod, transactionType, transactionID, transactionAmountCurrency, transactionAmount,
+            processingDivisionID, direction, transactionFXCurrency, transactionFXAmount, transactionFXRate
+        )
     }
 }

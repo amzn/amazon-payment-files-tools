@@ -19,9 +19,11 @@ fun mockFileValidator(fieldErrorCount: Int = 0, throwFatalError: Boolean = false
     if (throwFatalError)
         whenever(mock.validate(any())).thenThrow(IllegalArgumentException("fatal error"))
     else
-        whenever(mock.validate(any())).thenReturn(sequence {
-            for (i in 0 until fieldErrorCount)
-                yield(basicError)
-        })
+        whenever(mock.validate(any())).thenReturn(
+            sequence {
+                for (i in 0 until fieldErrorCount)
+                    yield(basicError)
+            }
+        )
     return mock
 }

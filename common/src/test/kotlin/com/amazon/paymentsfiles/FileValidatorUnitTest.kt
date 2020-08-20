@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test
 class FileValidatorUnitTest {
 
     enum class OptionalFieldModel(
-            override val fieldName: String,
-            override val required: Requirement = FieldRequired.Never,
-            override val validation: ((String, String) -> FieldError?)? = ::checkInteger
+        override val fieldName: String,
+        override val required: Requirement = FieldRequired.Never,
+        override val validation: ((String, String) -> FieldError?)? = ::checkInteger
     ) : CSVFieldModel {
         FirstColumn("FirstColumn"),
         SecondColumn("SecondColumn"),

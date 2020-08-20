@@ -39,8 +39,8 @@ enum class TransactionTypeOption(val abbr: String, val fileClass: RemittanceFile
 
     companion object {
         fun fetchOptions(fileClass: RemittanceFileClass? = null) =
-                enumValues<TransactionTypeOption>().filter {
-                    it.fileClass == RemittanceFileClass.Standard || it.fileClass == fileClass
-                }
+            enumValues<TransactionTypeOption>().filter {
+                it.fileClass == RemittanceFileClass.Standard || it.fileClass == fileClass
+            }
     }
 }

@@ -49,10 +49,14 @@ data class DepositHeader @JvmOverloads constructor(
      */
     private fun validateStringFields() {
         val errors = CSVEntry(
-            arrayOf(DepositHeaderField.DepositAccountName, DepositHeaderField.DepositAccountNumber,
-                DepositHeaderField.BankTransferID),
+            arrayOf(
+                DepositHeaderField.DepositAccountName,
+                DepositHeaderField.DepositAccountNumber,
+                DepositHeaderField.BankTransferID
+            ),
             arrayOf(depositAccountName, depositAccountNumber, bankTransferID)
         ).validateFields()
+
         if (errors.isNotEmpty())
             throw EntryFieldException(errors.first().normal)
     }

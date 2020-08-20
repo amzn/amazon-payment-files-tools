@@ -43,8 +43,8 @@ class ChargebackWriter(outputStream: OutputStream) : AutoCloseable {
      * com.amazon.paymentsfile.chargeback.generation.ChargebackEntry extension function to write the record's fields into a proper CSV line to be written to a file
      */
     private fun ChargebackEntry.toCSVLine(): String = "$disputeStatus,$caseNumber,$transactionID," +
-            "${disputeTime.truncatedTo(ChronoUnit.SECONDS)},$currency,$disputedAmount,$reason," +
-            "$representmentDeadline,$reasonDescription"
+        "${disputeTime.truncatedTo(ChronoUnit.SECONDS)},$currency,$disputedAmount,$reason," +
+        "$representmentDeadline,$reasonDescription"
 
     override fun close() = writer.close()
 }

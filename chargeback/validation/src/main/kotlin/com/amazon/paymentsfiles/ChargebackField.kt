@@ -13,8 +13,11 @@ enum class ChargebackField(
     override val required: Requirement,
     override val validation: ((String, String) -> FieldError?)?
 ) : CSVFieldModel {
-    DisputeStatus("Dispute Status", FieldRequired.Always,
-            makeChoiceCheck(enumValues<DisputeStatusOption>().map { it.name })),
+    DisputeStatus(
+        "Dispute Status",
+        FieldRequired.Always,
+        makeChoiceCheck(enumValues<DisputeStatusOption>().map { it.name })
+    ),
     CaseNumber("Case Number", FieldRequired.Always, makeLengthCheck(30)),
     TransactionID("Transaction ID", FieldRequired.Always, makeLengthCheck(38)),
     DisputeTime("Dispute Time", FieldRequired.Always, ::checkIsoInstant),

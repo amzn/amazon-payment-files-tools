@@ -5,10 +5,10 @@ package com.amazon.paymentsfiles
 
 import com.amazon.paymentsfiles.validation.ChargebackHeaderException
 import com.amazon.paymentsfiles.validation.EmptyChargebackException
-import java.io.File
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.io.File
 
 class ChargebackReaderUnitTest {
 

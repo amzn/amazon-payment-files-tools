@@ -12,14 +12,18 @@ package com.amazon.paymentsfiles
  */
 enum class StandardChargebackError(val error: FieldError) {
     DisputedAmountContext(
-            FieldError("Disputed Amount has incorrect number of decimal places",
+        FieldError(
+            "Disputed Amount has incorrect number of decimal places",
             "Disputed Amount has incorrect number of decimal places (must match default decimal places for " +
-                    "the given ISO 4217 currency code)")
+                "the given ISO 4217 currency code)"
+        )
     );
 
     companion object {
-        fun notIsoInstant(fieldName: String) = FieldError("$fieldName not proper RFC3339 date-time instant",
-                "$fieldName not proper RFC3339 date-time instant (must be in UTC timezone with form " +
-                        "<YYYY-MM-DD>T<HH:MM:SS>Z)")
+        fun notIsoInstant(fieldName: String) = FieldError(
+            "$fieldName not proper RFC3339 date-time instant",
+            "$fieldName not proper RFC3339 date-time instant (must be in UTC timezone with form " +
+                "<YYYY-MM-DD>T<HH:MM:SS>Z)"
+        )
     }
 }

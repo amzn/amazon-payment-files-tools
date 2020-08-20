@@ -51,7 +51,6 @@ class RemittanceContextChecksUnitTest {
         }
     }
 
-
     @Nested
     inner class NegativeCases {
 
@@ -88,13 +87,12 @@ class RemittanceContextChecksUnitTest {
         }
     }
 
-
     companion object {
         private fun assertFieldError(checkReturn: FieldError?) =
-                Assertions.assertTrue(checkReturn is FieldError)
+            Assertions.assertTrue(checkReturn is FieldError)
 
         private fun buildCSV(contentsMap: Map<CSVFieldModel, String>): CSVEntry =
-                CSVEntry(contentsMap.keys.toTypedArray(), contentsMap.values.toTypedArray())
+            CSVEntry(contentsMap.keys.toTypedArray(), contentsMap.values.toTypedArray())
 
         private fun runFXFieldsCheck(fx: FXRequirements, headerFXRate: String, recordFXRate: String): FieldError? {
             val internalState = RemittanceStats(

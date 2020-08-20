@@ -16,7 +16,7 @@ import java.time.format.DateTimeParseException
  * @return a FieldError object if the check fails and null otherwise
  */
 fun checkReasonDescription(fieldName: String, value: String): FieldError? =
-        checkLength(fieldName, value, 50) ?: checkAllASCII(fieldName, value)
+    checkLength(fieldName, value, 50) ?: checkAllASCII(fieldName, value)
 
 fun checkIsoInstant(fieldName: String, value: String): FieldError? = try {
     DateTimeFormatter.ISO_INSTANT.parse(value)

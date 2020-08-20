@@ -67,15 +67,19 @@ class RemittanceWriterUnitTest {
         @Test
         fun `No Exception Thrown when FX Checks Turned Off`() {
             RemittanceWriter(testFilePath, fxRequirements = FXRequirements.None).use {
-                it.addDeposit(DepositHeaderUnitTest.simpleDepositHeaderGenerator(
-                    fxPresentmentCurrency = Currency.getInstance("USD"),
-                    fxPresentmentAmount = BigDecimal("365")
-                ))
-                it.addRecord(DepositRecordUnitTest.simpleDepositRecordGenerator(
-                    direction = DirectionOption.Deposit,
-                    transactionFXCurrency = Currency.getInstance("USD"),
-                    transactionFXAmount = BigDecimal("365")
-                ))
+                it.addDeposit(
+                    DepositHeaderUnitTest.simpleDepositHeaderGenerator(
+                        fxPresentmentCurrency = Currency.getInstance("USD"),
+                        fxPresentmentAmount = BigDecimal("365")
+                    )
+                )
+                it.addRecord(
+                    DepositRecordUnitTest.simpleDepositRecordGenerator(
+                        direction = DirectionOption.Deposit,
+                        transactionFXCurrency = Currency.getInstance("USD"),
+                        transactionFXAmount = BigDecimal("365")
+                    )
+                )
             }
             File(testFilePath).delete()
         }
@@ -98,15 +102,19 @@ class RemittanceWriterUnitTest {
         fun `Exception Thrown for FX Checks in PayStationStandard State`() {
             Assertions.assertThrows(PayProGenerationException::class.java) {
                 RemittanceWriter(testFilePath).use {
-                    it.addDeposit(DepositHeaderUnitTest.simpleDepositHeaderGenerator(
-                        fxPresentmentCurrency = Currency.getInstance("USD"),
-                        fxPresentmentAmount = BigDecimal("365")
-                    ))
-                    it.addRecord(DepositRecordUnitTest.simpleDepositRecordGenerator(
-                        direction = DirectionOption.Deposit,
-                        transactionFXCurrency = Currency.getInstance("USD"),
-                        transactionFXAmount = BigDecimal("365")
-                    ))
+                    it.addDeposit(
+                        DepositHeaderUnitTest.simpleDepositHeaderGenerator(
+                            fxPresentmentCurrency = Currency.getInstance("USD"),
+                            fxPresentmentAmount = BigDecimal("365")
+                        )
+                    )
+                    it.addRecord(
+                        DepositRecordUnitTest.simpleDepositRecordGenerator(
+                            direction = DirectionOption.Deposit,
+                            transactionFXCurrency = Currency.getInstance("USD"),
+                            transactionFXAmount = BigDecimal("365")
+                        )
+                    )
                 }
             }
             File(testFilePath).delete()
@@ -117,12 +125,14 @@ class RemittanceWriterUnitTest {
             Assertions.assertThrows(PayProGenerationException::class.java) {
                 RemittanceWriter(testFilePath, fxRequirements = FXRequirements.OnlyInRecords).use {
                     it.addDeposit(DepositHeaderUnitTest.simpleDepositHeaderGenerator())
-                    it.addRecord(DepositRecordUnitTest.simpleDepositRecordGenerator(
-                        // No direction
-                        transactionFXCurrency = Currency.getInstance("USD"),
-                        transactionFXAmount = BigDecimal("365"),
-                        transactionFXRate = BigDecimal("1.00")
-                    ))
+                    it.addRecord(
+                        DepositRecordUnitTest.simpleDepositRecordGenerator(
+                            // No direction
+                            transactionFXCurrency = Currency.getInstance("USD"),
+                            transactionFXAmount = BigDecimal("365"),
+                            transactionFXRate = BigDecimal("1.00")
+                        )
+                    )
                 }
             }
             File(testFilePath).delete()
@@ -133,9 +143,9 @@ class RemittanceWriterUnitTest {
             Assertions.assertThrows(PayProGenerationException::class.java) {
                 RemittanceWriter(testFilePath, fxRequirements = FXRequirements.None).use {
                     it.addDeposit(DepositHeaderUnitTest.simpleDepositHeaderGenerator())
-                    it.addRecord(DepositRecordUnitTest.simpleDepositRecordGenerator(
-                        transactionAmount = BigDecimal("100.00")
-                    ))
+                    it.addRecord(
+                        DepositRecordUnitTest.simpleDepositRecordGenerator(transactionAmount = BigDecimal("100.00"))
+                    )
                 }
             }
             File(testFilePath).delete()

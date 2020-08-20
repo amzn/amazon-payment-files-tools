@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test
 class CSVEntryUnitTest {
 
     enum class TestFieldModel(
-            override val fieldName: String,
-            override val required: Requirement = FieldRequired.Never,
-            override val validation: ((String, String) -> FieldError?)? = null
+        override val fieldName: String,
+        override val required: Requirement = FieldRequired.Never,
+        override val validation: ((String, String) -> FieldError?)? = null
     ) : CSVFieldModel {
         FirstColumn("FirstColumn"),
         SecondColumn("SecondColumn"),

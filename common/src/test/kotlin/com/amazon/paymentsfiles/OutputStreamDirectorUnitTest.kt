@@ -47,7 +47,6 @@ class OutputStreamDirectorUnitTest {
         }
     }
 
-
     @Nested
     inner class NegativeCases {
 
