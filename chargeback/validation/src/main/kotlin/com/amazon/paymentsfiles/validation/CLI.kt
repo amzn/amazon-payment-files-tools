@@ -28,8 +28,8 @@ class CLI : CliktCommand() {
             .flag()
 
     private val files by argument(help = "Any number of valid file paths to validate")
-            .file(exists = true, fileOkay = true, folderOkay = false)
-            .multiple()
+            .file(mustExist = true, canBeFile = true, canBeDir = false)
+            .multiple(required = true)
 
     override fun run() {
         Controller(ChargebackValidator(), OutputStreamDirector(verbose = verbose)).use {

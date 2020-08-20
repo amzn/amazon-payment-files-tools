@@ -47,8 +47,8 @@ class CLI : CliktCommand() {
             .default("Standard")
 
     private val files by argument(help = "Any number of valid file paths to validate")
-            .file(exists = true, fileOkay = true, folderOkay = false)
-            .multiple()
+            .file(mustExist = true, canBeFile = true, canBeDir = false)
+            .multiple(required = true)
 
     private fun fetchFX(): FXRequirements = when (fx) {
         "standard" -> FXRequirements.PayStationStandard

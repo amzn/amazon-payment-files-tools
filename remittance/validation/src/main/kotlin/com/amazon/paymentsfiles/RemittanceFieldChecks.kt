@@ -12,10 +12,10 @@ package com.amazon.paymentsfiles
  * @param value the String that was passed as a value in the given field and needs to be validated
  * @return a FieldError object if the check fails and null otherwise
  */
-fun checkCorrectFormatVersion(fieldName: String, value: String): FieldError? =
+fun checkCorrectFormatVersion(@Suppress("UNUSED_PARAMETER") fieldName: String, value: String): FieldError? =
         if (value == REMITTANCE_FILE_VERSION) null else StandardRemittanceError.FileFormatVersion.error
 
-fun checkThirtyTwoNumeric(fieldName: String, value: String): FieldError? {
+fun checkThirtyTwoNumeric(@Suppress("UNUSED_PARAMETER") fieldName: String, value: String): FieldError? {
     val pattern = """\d{1,32}"""
     return if (Regex(pattern).matches(value)) null else StandardRemittanceError.DepositAccountNumber.error
 }

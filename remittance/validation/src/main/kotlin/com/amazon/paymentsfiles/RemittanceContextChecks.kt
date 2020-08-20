@@ -82,7 +82,10 @@ fun checkNumberOfRecords(record: CSVEntry, internalState: RemittanceStats): Fiel
  * @param internalState a RemittanceStats object containing necessary information about the validation process
  * @return an ArrayList of FieldError objects detected in that line
  */
-fun checkDepositAmount(record: CSVEntry, internalState: RemittanceStats): FieldError? = try {
+fun checkDepositAmount(
+    @Suppress("UNUSED_PARAMETER") record: CSVEntry,
+    internalState: RemittanceStats
+): FieldError? = try {
     val headerDepositAmount = BigDecimal(internalState.prevDepositHeader!!.get(DepositHeaderField.DepositAmount))
     if (headerDepositAmount != internalState.depositAmountSum)
         StandardRemittanceError.incorrectDepositAmountSum(headerDepositAmount, internalState.depositAmountSum)
