@@ -22,11 +22,9 @@ import java.io.File
  * Class that reports structural and field-level errors for remittance files
  *
  * @param fx an FXRequirements enum that determines which foreign exchange fields should be required
- * @param quotesExpected a Boolean indicating whether lines should be wrapped in quotation marks
  * for foreign exchange transactions
  */
 class RemittanceValidator(
-    val quotesExpected: Boolean = true,
     val fileClass: RemittanceFileClass = RemittanceFileClass.Standard,
     val fx: FXRequirements = FXRequirements.None
 ) : FileValidator {
@@ -43,7 +41,7 @@ class RemittanceValidator(
     override fun validate(file: File): Sequence<ErrorLine> {
         var internalState = RemittanceStats(fileClass = fileClass, fx = fx)
         return sequence {
-            for (record in RemittanceReader(file, quotesExpected).records) {
+            for (record in RemittanceReader(file).records) {
                 val errors = arrayListOf<FieldError>()
                 errors.addAll(record.validateFields(mandatoryFields))
                 errors.addAll(record.validateContext(internalState))

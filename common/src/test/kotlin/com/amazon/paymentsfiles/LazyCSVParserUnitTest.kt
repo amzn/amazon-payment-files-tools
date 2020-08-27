@@ -12,8 +12,8 @@ class LazyCSVParserUnitTest {
 
     private val testPath: String = "TstResources/CSVFiles/"
 
-    private fun loopThroughLines(file: File, mustBeSplit: Boolean = true, quotesExpected: Boolean = false) {
-        val csv = LazyCSVParser(file, mustBeSplit, quotesExpected)
+    private fun loopThroughLines(file: File, mustBeSplit: Boolean = true) {
+        val csv = LazyCSVParser(file, mustBeSplit)
         for (line in csv.readLines())
             continue
     }
@@ -28,17 +28,6 @@ class LazyCSVParserUnitTest {
             val expectedValues = arrayOf("SecondColumn", "2", "0", "6", "9")
             for (line in csv.readLines()) {
                 Assertions.assertEquals(expectedValues[counter], line[1])
-                counter++
-            }
-        }
-
-        @Test
-        fun `Wrapped CSV Correctly Parsed into Entries`() {
-            val csv = LazyCSVParser(File(testPath + "Wrapped.csv"), quotesExpected = true)
-            var counter = 0
-            val expectedValues = arrayOf("FirstColumn", "1", "0", "5", "9")
-            for (line in csv.readLines()) {
-                Assertions.assertEquals(expectedValues[counter], line[0])
                 counter++
             }
         }
@@ -68,20 +57,6 @@ class LazyCSVParserUnitTest {
         fun `Generic Text File Throws Format Exception`() {
             Assertions.assertThrows(CSVFormatException::class.java) {
                 loopThroughLines(File(testPath + "LoremIpsum.csv"))
-            }
-        }
-
-        @Test
-        fun `Quotes Expected Flag Throws Format Exception on Normal CSV`() {
-            Assertions.assertThrows(CSVFormatException::class.java) {
-                loopThroughLines(File(testPath + "Basic.csv"), quotesExpected = true)
-            }
-        }
-
-        @Test
-        fun `CSV with UTF-8 BOM Throws Exception on Quotes Expected`() {
-            Assertions.assertThrows(CSVFormatException::class.java) {
-                loopThroughLines(File(testPath + "BOM.csv"), quotesExpected = true)
             }
         }
     }

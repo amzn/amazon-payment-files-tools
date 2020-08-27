@@ -35,10 +35,6 @@ class CLI : CliktCommand() {
         .choice("standard", "onlyRecords")
         .default("none")
 
-    private val noWrap: Boolean by option(
-        "-nw", "--no-wrap", help = "Ignores check that each line must be wrapped in quotation marks"
-    ).flag()
-
     private val fileClass: String by option(
         "--file-class", "-fc", help = "Adjust the validation process for specific file sources"
     ).choice("DLocal", "Standard").default("Standard")
@@ -59,7 +55,7 @@ class CLI : CliktCommand() {
     }
 
     override fun run() {
-        val validator = RemittanceValidator(!noWrap, fetchFileClass(), fetchFX())
+        val validator = RemittanceValidator(fetchFileClass(), fetchFX())
         Controller(validator, OutputStreamDirector(verbose = verbose)).use {
             for (file in files)
                 it.validate(file)

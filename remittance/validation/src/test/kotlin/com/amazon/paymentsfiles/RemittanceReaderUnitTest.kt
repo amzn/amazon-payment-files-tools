@@ -44,7 +44,7 @@ class RemittanceReaderUnitTest {
 
         @Test
         fun `File Without Quotation Wrapping Can Pass Structure Tests`() {
-            RemittanceReader(File(testPath + "NotWrapped.csv"), quotesExpected = false)
+            RemittanceReader(File(testPath + "NotWrapped.csv"))
         }
     }
 

@@ -19,7 +19,7 @@ Run the validation tool like:
 Run the validation tool like:
 
 ```
-./validate-remittance [-no-wrap] [-fx] [FILES]
+./validate-remittance [-fx] [FILES]
 ```
 
 ## Generating Dispute Chargeback files
@@ -51,6 +51,8 @@ ChargebackWriter("/Users/name/Desktop/AccountingReports/chargeback.csv").use {
 ```
 
 ## Generating Remittance files
+
+Example code listing:
 
 ```kotlin
 val depositHeader = DepositHeader(

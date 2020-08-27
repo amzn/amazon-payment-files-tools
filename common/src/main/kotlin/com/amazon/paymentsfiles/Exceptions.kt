@@ -6,11 +6,8 @@ package com.amazon.paymentsfiles
 /**
  * Custom exception type used by the CSVFile class for alerting that a file is not properly comma-separated
  */
-class CSVFormatException(lineNo: Int, quotesExpected: Boolean = false, cause: Throwable? = null) :
-    IllegalArgumentException(
-        "line $lineNo is not comma-separated${if (quotesExpected) " or not wrapped in quotation marks" else ""}",
-        cause
-    )
+class CSVFormatException(lineNo: Int, cause: Throwable? = null) :
+    IllegalArgumentException("line $lineNo is not comma-separated", cause)
 
 /**
  * Custom exception type used by the CSV Entry class for use when a particular column is being requested from an entry

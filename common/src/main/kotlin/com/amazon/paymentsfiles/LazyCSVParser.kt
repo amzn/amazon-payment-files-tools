@@ -14,18 +14,17 @@ import java.io.File
  *
  * @param file a java.io.File object to interpret
  * @param mustBeSplit a Boolean dictating whether lines are permitted to have no commas, defaults to true
- * @param quotesExpected a Boolean dictating whether parsed lines should be expected to be wrapped in quotation marks
  * @property readLines a sequence of string arrays representing each row split at the commas
  * @throws CSVFormatException if a line has no commas and mustBeSplit is set to true
  */
-class LazyCSVParser(val file: File, val mustBeSplit: Boolean = true, val quotesExpected: Boolean = false) {
+class LazyCSVParser(val file: File, val mustBeSplit: Boolean = true) {
 
     fun readLines(): Sequence<Array<String>> = sequence {
         val reader: BufferedReader = file.bufferedReader()
         var lineNo = 0
         for (line in reader.lineSequence()) {
             lineNo++
-            yield(CSVFile.clean(line, lineNo, mustBeSplit, quotesExpected))
+            yield(CSVFile.clean(line, lineNo, mustBeSplit))
         }
         reader.close()
     }

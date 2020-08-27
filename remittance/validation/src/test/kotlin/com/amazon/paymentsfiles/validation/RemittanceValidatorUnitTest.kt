@@ -30,13 +30,13 @@ class RemittanceValidatorUnitTest {
 
         @Test
         fun `All-Records FX Raises No Errors nor Exceptions`() {
-            val validator = RemittanceValidator(fx = FXRequirements.OnlyInRecords, quotesExpected = false)
+            val validator = RemittanceValidator(fx = FXRequirements.OnlyInRecords)
             Assertions.assertEquals(0, validator.countErrors(testPath + "FXOnlyInRecords.csv"))
         }
 
         @Test
         fun `Additional Transaction Types Allowed for DLocal`() {
-            val validator = RemittanceValidator(fileClass = RemittanceFileClass.DLocal, quotesExpected = false)
+            val validator = RemittanceValidator(fileClass = RemittanceFileClass.DLocal)
             Assertions.assertEquals(0, validator.countErrors(testPath + "DLocal.csv"))
         }
     }
@@ -62,14 +62,14 @@ class RemittanceValidatorUnitTest {
             for (recordType in enumValues<RecordType>())
                 countOfValidatedFields += recordType.fields.filter { it.validation != null }.size
 
-            val validator = RemittanceValidator(fx = FXRequirements.PayStationStandard, fileClass = RemittanceFileClass.DLocal)
+            val validator = RemittanceValidator(fileClass = RemittanceFileClass.DLocal)
             Assertions.assertEquals(countOfValidatedFields, validator.countErrors(testPath + "BadFields.csv"))
         }
 
         @Test
         fun `Context Check Field Errors Detected`() {
             val countOfContextChecks = recordContextChecks.size + depositTrailerContextChecks.size + trailerContextChecks.size
-            val validator = RemittanceValidator(fx = FXRequirements.PayStationStandard, quotesExpected = false)
+            val validator = RemittanceValidator(fx = FXRequirements.PayStationStandard)
             Assertions.assertEquals(countOfContextChecks, validator.countErrors(testPath + "ContextChecks.csv"))
         }
     }

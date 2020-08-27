@@ -48,8 +48,8 @@ class RemittanceWriter @JvmOverloads constructor(
     }
 
     private fun writeHeader() = writer.write(
-        """"${RecordType.Header.charName},${formatDate(creationTime)},""" +
-            """${formatTime(creationTime)},$REMITTANCE_FILE_VERSION"${'\n'}"""
+        "${RecordType.Header.charName},${formatDate(creationTime)},${formatTime(creationTime)}," +
+            "$REMITTANCE_FILE_VERSION\n"
     )
 
     fun addDeposit(header: DepositHeader) {
@@ -72,5 +72,5 @@ class RemittanceWriter @JvmOverloads constructor(
         writer.close()
     }
 
-    private fun writeTrailer() = writer.append(""""${RecordType.Trailer.charName},$remittanceCount"${'\n'}""")
+    private fun writeTrailer() = writer.append("""${RecordType.Trailer.charName},$remittanceCount${'\n'}""")
 }

@@ -13,13 +13,11 @@ import java.io.File
  * Class for lazily parsing files into entries with proper Remittance fields
  *
  * @param file a Java.io.File object to parse lazily
- * @param quotesExpected a Boolean indicating whether each line of the file should be wrapped in quotation marks,
- * defaults to true
  * @property records a sequence of parsed CSVEntry objects
  */
-class RemittanceReader(file: File, quotesExpected: Boolean = true) {
+class RemittanceReader(file: File) {
 
-    private val csv = LazyCSVParser(file, quotesExpected = quotesExpected)
+    private val csv = LazyCSVParser(file)
 
     init {
         checkStructure()

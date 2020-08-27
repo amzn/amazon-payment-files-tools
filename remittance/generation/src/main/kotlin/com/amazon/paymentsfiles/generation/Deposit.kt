@@ -21,7 +21,7 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
     var initialized = false
 
     fun initialize() {
-        writer.append(""""${header.toCSVLine()}"${'\n'}""")
+        writer.append("${header.toCSVLine()}${'\n'}")
         initialized = true
     }
 
@@ -42,7 +42,7 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
             this.initialize()
         checkFXFieldsProvided(record)
         checkFXRateProvided(record)
-        writer.append(""""${record.toCSVLine()}"${'\n'}""")
+        writer.append("${record.toCSVLine()}${'\n'}")
         this.depositTotal += formatMonetary(record.transactionAmount)
         this.recordCount++
     }
@@ -97,7 +97,6 @@ internal class Deposit(val header: DepositHeader, val writer: OutputStreamWriter
             throw RecordAmountSumException()
     }
 
-    private fun writeTrailer() = writer.append(
-        """"${RecordType.DepositTrailer.charName},${formatDate(header.depositDate)},$recordCount"${'\n'}"""
-    )
+    private fun writeTrailer() =
+        writer.append("${RecordType.DepositTrailer.charName},${formatDate(header.depositDate)},$recordCount${'\n'}")
 }
